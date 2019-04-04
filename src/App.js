@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import PersonDetails from './scenes/PersonDetails';
+import PersonSearch from './scenes/PersonSearch';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <BrowserRouter>
+                    <Route exact path="/" component={PersonSearch} />
+                    <Route exact path="/profile/:id" render={ (props) => <PersonDetails {...props} />} />
+                    <Route exact path="/profile" component={PersonDetails} />
+                </BrowserRouter>
+            </div>
+        );
+    }
 }
 
 export default App;
